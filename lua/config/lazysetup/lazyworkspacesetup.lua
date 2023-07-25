@@ -147,11 +147,12 @@ return {
 
     -- nvimcord
     {
-        "Cyuria/nvimcord",
+        "ObserverOfTime/nvimcord",
+        branch = "workspace",
         opts = {
             autostart = true,
             large_file_icon = true,
-            dev = true,
+            dynamic_workspace = true,
         }
     }
 }

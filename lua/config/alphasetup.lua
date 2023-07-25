@@ -221,7 +221,8 @@ local section = {
         type = "group",
         val = {
             { type = "button", val = "", on_press = function()end, opts = { noremap = true, silent = true, nowait = true } },
-            button("e", "New file", "<cmd>ene <cr>"),
+            button("e", "New file", "<cmd>ene<cr>"),
+            button("h", "Open home dir", "<cmd>e ~/<cr>"),
         },
     },
     mrf = {
