@@ -32,8 +32,7 @@ vim.opt.foldminlines = 1
 
 -- Disable perl provider so :checkhealth stops complaining
 vim.g.loaded_perl_provider = 0
--- Manually choose which python to use (out of 4 or 5 versions I have installed)
-vim.g.python3_host_prog = os.getenv("LOCALAPPDATA") .. "/Programs/Python/Python311/python.exe"
+vim.g.python3_host_prog = os.getenv("PYTHONPATH") or vim.g.python3_host_prog
 
 -- Remove extra menu items from mouse right click menu
 vim.cmd.aunmenu 'PopUp.How-to\\ disable\\ mouse'
