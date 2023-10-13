@@ -19,7 +19,6 @@ local customconfig = {
                 },
             },
         },
-        capabilities = cmp.capabilities,
     },
     cmake = {
         settings = {
@@ -34,7 +33,8 @@ local customconfig = {
 }
 
 local function get(lsp)
-    return customconfig[lsp] or default
+    local config = customconfig[lsp] or {}
+    return vim.tbl_deep_extend("keep", config, default)
 end
 
 return {

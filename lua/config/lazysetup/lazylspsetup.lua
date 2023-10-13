@@ -36,16 +36,6 @@ return {
                     local config = myconfig.get(lspname)
                     lspconfig[lspname].setup(config)
                 end,
-                -- Use custom setup
-                ["clangd"] = function()
-                    require'clangd_extensions'.setup(myconfig.get "cland")
-                end,
-                ["rust_analyzer"] = function()
-                    require'rust-tools'.setup(myconfig.get "rust_analyzer")
-                end,
-                ["tsserver"] = function()
-                    require'typescript'.setup(myconfig.get "tsserver")
-                end,
             }
 
         end,
