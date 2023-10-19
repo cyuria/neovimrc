@@ -25,6 +25,18 @@ local ftypeopts = {
         tabstop = 4,
         shiftwidth = 4,
     },
+    help = {
+        expandtab = false,
+        modeline = true,
+        tabstop = 8,
+        shiftwidth = 8,
+    },
+    vimdoc = {
+        expandtab = false,
+        modeline = true,
+        tabstop = 8,
+        shiftwidth = 8,
+    },
 }
 
 local bufopts = {
@@ -97,6 +109,10 @@ local function load()
         group = augroup,
         command = 'NvimcordUpdate',
     })
+    vim.api.nvim_create_autocmd({ "BufWritePost", "FileWritePost" }, {
+        group = augroup,
+        command = "!rg --files | ctags -R -L -"
+    });
     LoadBufferOptAutocmd(augroup)
 end
 

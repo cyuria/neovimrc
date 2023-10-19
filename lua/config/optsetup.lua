@@ -19,7 +19,13 @@ vim.opt.incsearch = true
 vim.opt.undofile = true
 
 -- Set my preferred temrinal shell
-vim.g.terminal = 'msys2_shell -defterm -here -no-start -use-full-path -shell bash'
+if vim.fn.has("win32") then
+    vim.g.terminal = 'msys2_shell -defterm -here -no-start -use-full-path -shell bash'
+end
+
+-- Set the search path for :find and :cd
+vim.opt.path = ",,**2,../**2"
+vim.opt.cdpath = ",,../,**1"
 
 -- Disable netrw
 vim.g.loaded_netrw = 1
