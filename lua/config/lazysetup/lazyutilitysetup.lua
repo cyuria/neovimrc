@@ -10,7 +10,17 @@ return {
         event = "BufReadPre",
         opts = {},
     },
-    "Pocco81/auto-save.nvim",
+    -- auto-save
+    {
+        "Pocco81/auto-save.nvim",
+        opts = {
+            callbacks = {
+                after_saving = function()
+                    vim.system({ "rg", "--files", "|", "ctags", "--recurse", "-L", "-"})
+                end
+            }
+        }
+    },
     -- nvim-surround
     {
         "kylechui/nvim-surround",
