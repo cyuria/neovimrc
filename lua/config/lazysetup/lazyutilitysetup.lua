@@ -15,9 +15,7 @@ return {
         "Pocco81/auto-save.nvim",
         opts = {
             callbacks = {
-                after_saving = function()
-                    vim.system({ "rg", "--files", "|", "ctags", "--recurse", "-L", "-"})
-                end
+                after_saving = require 'config.functions'.reloadCtags
             }
         }
     },

@@ -111,7 +111,7 @@ local function load()
     })
     vim.api.nvim_create_autocmd({ "BufWritePost", "FileWritePost" }, {
         group = augroup,
-        command = "!rg --files | ctags -R -L -"
+        callback = require'config.functions'.reloadCtags,
     });
     LoadBufferOptAutocmd(augroup)
 end
