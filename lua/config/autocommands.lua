@@ -44,6 +44,10 @@ local bufopts = {
         pattern = { "*.gltf", },
         options = { filetype = "json", }
     },
+    {
+        pattern = { ".tags" },
+        options = { filetype = "tags" },
+    }
 }
 
 

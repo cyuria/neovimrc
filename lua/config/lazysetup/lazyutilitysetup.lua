@@ -24,7 +24,19 @@ return {
         "kylechui/nvim-surround",
         version = "*",
         event = "VeryLazy",
-        opts = {},
+        opts = {
+            keymaps = {
+                normal = "<leader>ys",
+                normal_cur = "<leader>y<leader>",
+                normal_line = "<leader>yS",
+                normal_line_cur = "<leader>yS<leader>",
+                visual = "<leader>S",
+                visual_line = "<leader>gS",
+                delete = "<leader>ds",
+                change = "<leader>cs",
+                change_line = "<leader>cS",
+            },
+        },
         dependencies = {
             "nvim-treesitter",
         }
@@ -82,13 +94,13 @@ return {
             current_line_blame_formatter = '<author>, <summary> - <author_time:%d/%m/%Y>',
         },
     },
-    -- todo.nvim
+    -- todo-comments.nvim
     {
-        "AmeerTaweel/todo.nvim",
+        "folke/todo-comments.nvim",
         opts = {},
         config = function(_, opts)
-            require'todo'.setup(opts)
-            require'telescope'.load_extension'todo'
+            require'todo-comments'.setup(opts)
+            require'telescope'.load_extension'todo-comments'
         end,
         dependencies = {
             "nvim-lua/plenary.nvim",

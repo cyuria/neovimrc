@@ -17,6 +17,7 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
     "seandewar/nvimesweeper",
     "alec-gibson/nvim-tetris",
+    "alanfortlink/blackjack.nvim",
     { import = 'config.lazysetup.lazylspsetup' },
     { import = 'config.lazysetup.lazystylesetup' },
     { import = 'config.lazysetup.lazycoloursetup' },
@@ -27,7 +28,7 @@ local plugins = {
 
 local lazyopts = {
     dev = {
-        path = "~/Documents/programming",
+        path = "~/code",
         patterns = { "Cyuria", },
         fallback = true,
     },

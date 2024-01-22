@@ -28,7 +28,7 @@ local function floatingShell(cmd)
 end
 
 local function reloadCtags()
-    vim.system({ "rg", "--files", "|", "ctags", "-f", ".tags", "--recurse", "-L", "-" })
+    vim.system({ "/usr/bin/sh", "-c", "rg --files | ctags -f .tags --recurse -L -" })
 end
 
 return {

@@ -36,7 +36,7 @@ vim.keymap.set(
 vim.keymap.set(
     'n',
     '<leader>ft',
-    telescope.extensions.todo.todo,
+    telescope.extensions['todo-comments'].todo,
     { desc = "Telescope todo" }
 )
 vim.keymap.set(

@@ -103,6 +103,7 @@ return {
             auto_install = true,
             -- The following types fail to compile. Its fine except for
             -- typescript/tsx which I might want to use at some point
+            --[[
             ignore_install = {
                 "d",
                 "janet_simple",
@@ -115,6 +116,7 @@ return {
                 "typescript",
                 "wing",
             },
+            ]]--
             highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false,
@@ -133,6 +135,8 @@ return {
             require 'nvim-treesitter.install'.prefer_git = false
             -- Initialise treesitter
             require'nvim-treesitter.configs'.setup(opts)
+
+            vim.treesitter.language.register("htmldjango", "html")
         end,
     },
 

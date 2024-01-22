@@ -18,11 +18,8 @@ vim.opt.incsearch = true
 
 vim.opt.undofile = true
 
--- Set my preferred temrinal shell
-if vim.fn.has("win32") then
-    vim.g.terminal = 'msys2_shell -defterm -here -no-start -use-full-path -shell bash'
-end
-
+-- Set the location of the ctags file
+vim.opt.tags = ".tags,tags,./.tags,./tags,~/.tags"
 -- Set the search path for :find and :cd
 vim.opt.path = ",,**2,../**2"
 vim.opt.cdpath = ",,../,**1"
@@ -38,9 +35,8 @@ vim.opt.foldminlines = 1
 
 -- Disable perl provider so :checkhealth stops complaining
 vim.g.loaded_perl_provider = 0
-vim.g.python3_host_prog = os.getenv("PYTHONPATH") or vim.g.python3_host_prog
+vim.g.python3_host_prog = vim.g.python3_host_prog
 
 -- Remove extra menu items from mouse right click menu
 vim.cmd.aunmenu 'PopUp.How-to\\ disable\\ mouse'
 vim.cmd.aunmenu 'PopUp.-1-'
-
