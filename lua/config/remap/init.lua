@@ -1,6 +1,8 @@
-vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
-vim.keymap.set('n', '<leader>zm', vim.cmd.ZenMode)
-vim.keymap.set('n', '<leader>aph', vim.cmd.Alpha)
+if require 'dependencies'.enable_plugins then
+    vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
+    vim.keymap.set('n', '<leader>zm', vim.cmd.ZenMode)
+    vim.keymap.set('n', '<leader>aph', vim.cmd.Alpha)
+end
 
 vim.keymap.set('n', 'ZA', function() vim.cmd'wqa!' end, {})
 

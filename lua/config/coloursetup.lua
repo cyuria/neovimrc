@@ -9,13 +9,16 @@ end
 vim.api.nvim_create_user_command('Dark', dark, {})
 vim.api.nvim_create_user_command('Light', light, {})
 
--- Set default light and dark schemes
-vim.g.darkscheme = "tokyonight"
-vim.g.lightscheme = "kanagawa-lotus"
+-- Set default light and dark schemes and configure colorscheme dependent options
+vim.g.darkscheme = "default"
+vim.g.lightscheme = "zellner"
+if require 'dependencies'.enable_plugins then
+    vim.g.darkscheme = "tokyonight"
+    vim.g.lightscheme = "kanagawa-lotus"
 
--- configure colorscheme dependent options
-vim.g.gruvbox_contrast_dark = 'soft'
-vim.g.ayucolor = 'mirage'
+    vim.g.gruvbox_contrast_dark = 'soft'
+    vim.g.ayucolor = 'mirage'
+end
 
 return {
     dark = dark,
