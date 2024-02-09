@@ -1,5 +1,7 @@
 -- Enable profiling
-vim.loader.enable()
+if require'dependencies'.enable_version then
+    vim.loader.enable()
+end
 
 require'config.optsetup'
 require'config.lazysetup'
