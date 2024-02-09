@@ -102,20 +102,22 @@ local function load()
         group = augroup,
         command = 'bd!',
     })
-    vim.api.nvim_create_autocmd({ "DirChanged" }, {
-        group = augroup,
-        callback = function()
-            local wsname = require'nvimcord.workspace'.get_name()
-            require'nvimcord.discord'.config.workspace_name = wsname
-        end
-    })
-    vim.api.nvim_create_autocmd({ "BufLeave" }, {
-        group = augroup,
-        command = 'NvimcordUpdate',
-    })
+    if require 'dependencies'.enable_discord then
+        vim.api.nvim_create_autocmd({ "DirChanged" }, {
+            group = augroup,
+            callback = function()
+                local wsname = require 'nvimcord.workspace'.get_name()
+                require 'nvimcord.discord'.config.workspace_name = wsname
+            end
+        })
+        vim.api.nvim_create_autocmd({ "BufLeave" }, {
+            group = augroup,
+            command = 'NvimcordUpdate',
+        })
+    end
     vim.api.nvim_create_autocmd({ "BufWritePost", "FileWritePost" }, {
         group = augroup,
-        callback = require'config.functions'.reloadCtags,
+        callback = require 'config.functions'.reloadCtags,
     });
     LoadBufferOptAutocmd(augroup)
 end
@@ -123,4 +125,3 @@ end
 return {
     load = load,
 }
-

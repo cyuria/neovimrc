@@ -2,15 +2,19 @@ function ConcatPath(path1, path2)
     return vim.fn.resolve(path1 .. '/' .. path2)
 end
 
-return {
+local plugins = {
     -- telescope.nvim
     {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
         opts = {},
         dependencies = {
-            "nvim-lua/plenary.nvim"
-        }
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope-live-grep-args.nvim",
+        },
+        config = function()
+            require'telescope'.load_extension'live_grep_args'
+        end,
     },
     -- telescope-fzf-native.nvim
     {
@@ -134,8 +138,11 @@ return {
             "nvim-tree/nvim-web-devicons"
         },
     },
-    -- octo.nvim
-    {
+}
+
+-- octo.nvim
+if require'dependencies'.enable_github then
+    table.insert(plugins, {
         "pwntester/octo.nvim",
         opts = {},
         dependencies = {
@@ -143,10 +150,11 @@ return {
             "nvim-lua/plenary.nvim",
             "nvim-tree/nvim-web-devicons",
         }
-    },
-
-    -- nvimcord
-    {
+    })
+end
+-- nvimcord
+if require'dependencies'.enable_discord then
+    table.insert(plugins, {
         "ObserverOfTime/nvimcord",
         branch = "workspace",
         opts = {
@@ -154,5 +162,7 @@ return {
             large_file_icon = true,
             dynamic_workspace = true,
         }
-    }
-}
+    })
+end
+
+return plugins

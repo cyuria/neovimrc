@@ -32,9 +32,4 @@ return {
             fill_char = '󰇜',
         },
     },
-    -- neoscroll.nvim
-    {
-        "karb94/neoscroll.nvim",
-        opts = {},
-    }
 }

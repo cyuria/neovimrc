@@ -34,8 +34,7 @@ vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 vim.opt.foldminlines = 1
 
 -- Disable perl provider so :checkhealth stops complaining
-vim.g.loaded_perl_provider = 0
-vim.g.python3_host_prog = vim.g.python3_host_prog
+--vim.g.loaded_perl_provider = 0
 
 -- Remove extra menu items from mouse right click menu
 vim.cmd.aunmenu 'PopUp.How-to\\ disable\\ mouse'
