@@ -1,10 +1,10 @@
 
 -- Setup light and dark mode functions and mappings
 local function dark()
-    vim.cmd.colorscheme(vim.g.darkscheme)
+    vim.cmd('colorscheme ' .. vim.g.darkscheme)
 end
 local function light()
-    vim.cmd.colorscheme(vim.g.lightscheme)
+    vim.cmd('colorscheme ' .. vim.g.lightscheme)
 end
 vim.api.nvim_create_user_command('Dark', dark, {})
 vim.api.nvim_create_user_command('Light', light, {})
