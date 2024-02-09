@@ -37,5 +37,5 @@ vim.opt.foldminlines = 1
 --vim.g.loaded_perl_provider = 0
 
 -- Remove extra menu items from mouse right click menu
-vim.cmd.aunmenu 'PopUp.How-to\\ disable\\ mouse'
-vim.cmd.aunmenu 'PopUp.-1-'
+vim.cmd('aunmenu PopUp.How-to\\ disable\\ mouse')
+vim.cmd('aunmenu PopUp.-1-')
