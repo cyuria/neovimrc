@@ -6,6 +6,7 @@ return {
     {
         "rebelot/kanagawa.nvim",
         opts = {
+            transparent = true,
             -- Remove gutter background
             colors = { theme = { all = { ui = {
                 bg_gutter = nil
@@ -107,5 +108,8 @@ return {
     "lunacookies/vim-colors-xcode",
     "kuuote/elly.vim",
     "jorengarenar/vim-darkness",
-
+    "savq/melange-nvim",
+    "luisiacc/gruvbox-baby",
+    "blueshirts/darcula",
+    "joshdick/onedark.vim",
 }
