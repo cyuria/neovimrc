@@ -12,7 +12,7 @@ local doubleschemes = {
 }
 
 -- Set default light and dark schemes and configure colorscheme dependent options
-vim.g.darkscheme = "sorbet"
+vim.g.darkscheme = "slate"
 vim.g.lightscheme = "shine"
 if require 'dependencies'.enable_plugins then
     vim.g.darkscheme = "elly"
