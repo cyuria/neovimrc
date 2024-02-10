@@ -49,10 +49,10 @@ return {
             check_ts = true, -- use treesitter
         },
         config = function(_, opts)
-            require'nvim-autopairs'.setup(opts)
+            require 'nvim-autopairs'.setup(opts)
 
-            local cmp_autopairs = require'nvim-autopairs.completion.cmp'
-            local cmp = require'cmp'
+            local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+            local cmp = require 'cmp'
 
             cmp.event:on(
                 'confirm_done',
@@ -83,7 +83,7 @@ return {
             defaults = {},
         },
         config = function(_, opts)
-            require'colorizer'.setup(opts.filetypes, opts.defaults)
+            require 'colorizer'.setup(opts.filetypes, opts.defaults)
         end
     },
     -- gitsigns.nvim
@@ -99,8 +99,8 @@ return {
         "folke/todo-comments.nvim",
         opts = {},
         config = function(_, opts)
-            require'todo-comments'.setup(opts)
-            require'telescope'.load_extension'todo-comments'
+            require 'todo-comments'.setup(opts)
+            require 'telescope'.load_extension 'todo-comments'
         end,
         dependencies = {
             "nvim-lua/plenary.nvim",
@@ -108,5 +108,7 @@ return {
         },
     },
     -- undo tree
-    "mbbill/undotree"
+    "mbbill/undotree",
+    -- vim matchup
+    "andymass/vim-matchup",
 }

@@ -10,7 +10,7 @@ return {
             -- This is commented because of the over 500ms
             -- startup delay induced by using the code
 
-            require'luasnip.loaders.from_vscode'.load()
+            require 'luasnip.loaders.from_vscode'.load()
         end,
         dependencies = {
             "rafamadriz/friendly-snippets"
@@ -25,19 +25,18 @@ return {
         cmd = "Mason",
         opts = {},
         config = function()
-            local lspconfig = require'lspconfig'
-            local myconfig = require'config.lspsetup'
+            local lspconfig = require 'lspconfig'
+            local myconfig = require 'config.lspsetup'
 
-            require'mason'.setup()
-            require'mason-lspconfig'.setup()
-            require'mason-lspconfig'.setup_handlers {
+            require 'mason'.setup()
+            require 'mason-lspconfig'.setup()
+            require 'mason-lspconfig'.setup_handlers {
                 -- Default setup
                 function(lspname)
                     local config = myconfig.get(lspname)
                     lspconfig[lspname].setup(config)
                 end,
             }
-
         end,
         dependencies = {
             "williamboman/mason-lspconfig.nvim",
@@ -54,15 +53,15 @@ return {
         "hrsh7th/nvim-cmp",
         lazy = true,
         opts = function()
-            local cmp = require'cmp'
+            local cmp = require 'cmp'
             return {
                 snippet = {
                     expand = function(args)
-                        require'luasnip'.lsp_expand(args.body)
+                        require 'luasnip'.lsp_expand(args.body)
                     end,
                 },
                 mapping = {
-                    ['<CR>'] = require'cmp'.mapping.confirm({ select = true })
+                    ['<CR>'] = require 'cmp'.mapping.confirm({ select = true })
                 },
                 sources = cmp.config.sources({
                     { name = "nvim_lsp" },
@@ -79,7 +78,7 @@ return {
                     end)()
                 },
                 formatting = {
-                    format = require'lspkind'.cmp_format {}
+                    format = require 'lspkind'.cmp_format {}
                 },
             }
         end,
@@ -101,22 +100,6 @@ return {
             ensure_installed = "all",
             sync_install = false,
             auto_install = true,
-            -- The following types fail to compile. Its fine except for
-            -- typescript/tsx which I might want to use at some point
-            --[[
-            ignore_install = {
-                "d",
-                "janet_simple",
-                "ocaml",
-                "ocaml_interface",
-                "qmljs",
-                "rnoweb",
-                "twig",
-                "tsx",
-                "typescript",
-                "wing",
-            },
-            ]]--
             highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false,
@@ -127,6 +110,9 @@ return {
             indent = {
                 enable = true,
             },
+            matchup = {
+                enable = true,
+            }
         },
         config = function(_, opts)
             -- Use clang, as other compilers break stuff
@@ -134,10 +120,13 @@ return {
             -- Use tar + curl instead of git
             require 'nvim-treesitter.install'.prefer_git = false
             -- Initialise treesitter
-            require'nvim-treesitter.configs'.setup(opts)
+            require 'nvim-treesitter.configs'.setup(opts)
 
             vim.treesitter.language.register("htmldjango", "html")
         end,
+        dependencies = {
+            "vim-matchup",
+        },
     },
 
 }
