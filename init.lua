@@ -16,4 +16,4 @@ if require 'dependencies'.enable_plugins then
 end
 
 -- Set colorscheme
-vim.cmd('Dark')
+require 'config.coloursetup'.dark()

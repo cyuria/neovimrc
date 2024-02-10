@@ -48,7 +48,6 @@ return {
         opts = {
             style = "night",
             light_style = "day",
-            transparent = true,
             day_brightness = 0.6,
             dim_inactive = true,
             on_colors = function(colours)
@@ -104,4 +103,9 @@ return {
             end,
         },
     },
+    "sainnhe/edge",
+    "lunacookies/vim-colors-xcode",
+    "kuuote/elly.vim",
+    "jorengarenar/vim-darkness",
+
 }

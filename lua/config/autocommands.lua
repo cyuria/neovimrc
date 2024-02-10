@@ -61,6 +61,7 @@ function LoadFiletypeOpts(opts)
     local bufferopts = ftypeopts[vim.bo[opts.buf].filetype] or ftypeopts.defaults
     LoadOpts(bufferopts, opts.buf)
 end
+
 function LoadBufferOptAutocmd(augroup)
     for _, bufoptions in ipairs(bufopts) do
         vim.api.nvim_create_autocmd(
@@ -102,6 +103,14 @@ local function load()
         group = augroup,
         command = 'bd!',
     })
+    vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+        group = augroup,
+        callback = function()
+            if vim.o.background == 'dark' then
+                require 'config.coloursetup'.make_transparent()
+            end
+        end
+    })
     if require 'dependencies'.enable_discord then
         vim.api.nvim_create_autocmd({ "DirChanged" }, {
             group = augroup,
@@ -119,6 +128,14 @@ local function load()
         group = augroup,
         callback = require 'config.functions'.reloadCtags,
     });
+    if require 'dependencies'.enable_unmerged then
+        vim.api.nvim_create_autocmd({ "FoldChanged" }, {
+            group = augroup,
+            callback = function()
+                vim.cmd("call matchup#matchparen#hightlight_surrounding()")
+            end,
+        })
+    end
     LoadBufferOptAutocmd(augroup)
 end
 
