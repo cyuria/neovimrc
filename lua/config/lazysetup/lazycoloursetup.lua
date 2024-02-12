@@ -6,7 +6,6 @@ return {
     {
         "rebelot/kanagawa.nvim",
         opts = {
-            transparent = true,
             -- Remove gutter background
             colors = { theme = { all = { ui = {
                 bg_gutter = nil
@@ -39,7 +38,6 @@ return {
     },
     "morhetz/gruvbox",
     "sjl/badwolf",
-    "ayu-theme/ayu-vim",
     "romainl/apprentice",
     "yorickpeterse/happy_hacking.vim",
     -- tokyonight.nvim

@@ -16,18 +16,18 @@ vim.g.darkscheme = "slate"
 vim.g.lightscheme = "shine"
 if require 'dependencies'.enable_plugins then
     vim.g.darkscheme = "elly"
-    vim.g.lightscheme = "kanagawa-lotus"
+    vim.g.lightscheme = "dayfox"
 
     vim.g.gruvbox_contrast_dark = 'soft'
     vim.g.gruvbox_baby_telescope_theme = 1
     vim.g.gruvbox_baby_transparent_mode = 1
-    vim.g.ayucolor = 'mirage'
 end
 
 -- Setup light and dark mode functions and mappings
 local function make_transparent()
     local groups = {
         "Normal",
+        "NormalNC",
         "NormalFloat",
         "NonText",
         "EndOfBuffer",
@@ -40,18 +40,20 @@ local function make_transparent()
     end
 end
 local function dark()
+    local double = vim.tbl_contains(doubleschemes, vim.g.colors_name)
     vim.o.background = 'dark'
-    if vim.tbl_contains(doubleschemes, vim.g.colors_name) then
-        return
+    if not double then
+        vim.g.lightscheme = vim.g.colors_name or vim.g.lightscheme
+        vim.cmd('colorscheme ' .. vim.g.darkscheme)
     end
-    vim.cmd('colorscheme ' .. vim.g.darkscheme)
 end
 local function light()
+    local double = vim.tbl_contains(doubleschemes, vim.g.colors_name)
     vim.o.background = 'light'
-    if vim.tbl_contains(doubleschemes, vim.g.colors_name) then
-        return
+    if not double then
+        vim.g.darkscheme = vim.g.colors_name or vim.g.darkscheme
+        vim.cmd('colorscheme ' .. vim.g.lightscheme)
     end
-    vim.cmd('colorscheme ' .. vim.g.lightscheme)
 end
 local function random_scheme()
     local schemes = vim.fn.getcompletion("", "color")
