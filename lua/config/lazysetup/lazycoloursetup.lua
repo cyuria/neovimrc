@@ -36,7 +36,7 @@ return {
             end,
         },
     },
-    "morhetz/gruvbox",
+    "ellisonleao/gruvbox.nvim",
     "sjl/badwolf",
     "romainl/apprentice",
     "yorickpeterse/happy_hacking.vim",
