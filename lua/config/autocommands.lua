@@ -111,6 +111,12 @@ local function load()
             end
         end
     })
+    vim.api.nvim_create_autocmd({ "TextChanged" }, {
+        group = augroup,
+        callback = function()
+            vim.lsp.buf.format()
+        end
+    })
     if require 'dependencies'.enable_discord then
         vim.api.nvim_create_autocmd({ "DirChanged" }, {
             group = augroup,
