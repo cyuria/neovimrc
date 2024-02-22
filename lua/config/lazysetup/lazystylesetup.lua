@@ -22,6 +22,7 @@ return {
     -- pretty-fold.nvim
     {
         "anuvyklack/pretty-fold.nvim",
+        lazy = false,
         opts = {
             sections = {
                 left = {

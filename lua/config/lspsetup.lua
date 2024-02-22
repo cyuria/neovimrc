@@ -1,8 +1,6 @@
 
-local cmp = require'cmp'
-
 local default = {
-    capabilities = cmp.capabilities,
+    capabilities = require 'cmp_nvim_lsp'.default_capabilities(),
 }
 
 local customconfig = {

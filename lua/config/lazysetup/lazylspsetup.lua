@@ -3,12 +3,9 @@ return {
     {
         "L3MON4D3/LuaSnip",
         version = "1.2.*",
+        event = "VeryLazy",
         build = "make install_jsregexp",
         config = function()
-            -- Uncomment to use friendly snippets
-            -- This is commented because of the over 500ms
-            -- startup delay induced by using the code
-
             require 'luasnip.loaders.from_vscode'.load()
         end,
         dependencies = {
@@ -19,19 +16,19 @@ return {
     {
         "williamboman/mason.nvim",
         build = ":MasonUpdate",
+        lazy = false,
         cmd = "Mason",
         opts = {},
         config = function()
             local lspconfig = require 'lspconfig'
-            local myconfig = require 'config.lspsetup'
+            local cfg = require 'config.lspsetup'
 
             require 'mason'.setup()
             require 'mason-lspconfig'.setup()
             require 'mason-lspconfig'.setup_handlers {
                 -- Default setup
                 function(lspname)
-                    local config = myconfig.get(lspname)
-                    lspconfig[lspname].setup(config)
+                    lspconfig[lspname].setup(cfg.get(lspname))
                 end,
             }
         end,
@@ -68,11 +65,7 @@ return {
                 }),
                 window = {
                     completion = cmp.config.window.bordered(),
-                    documentation = (function()
-                        local config = cmp.config.window.bordered()
-                        --config.zindex = -1
-                        return config
-                    end)()
+                    documentation = cmp.config.window.bordered()
                 },
                 formatting = {
                     format = require 'lspkind'.cmp_format {}
@@ -80,7 +73,6 @@ return {
             }
         end,
         dependencies = {
-            "LuaSnip",
             "saadparwaiz1/cmp_luasnip",
             "onsails/lspkind.nvim",
             "hrsh7th/cmp-nvim-lsp",
@@ -92,9 +84,12 @@ return {
     -- nvim-treesitter
     {
         "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
+        build = {
+            ":TSUpdate",
+            ":TSInstall all",
+        },
+        lazy = false,
         opts = {
-            ensure_installed = "all",
             sync_install = false,
             auto_install = true,
             highlight = {
@@ -121,8 +116,5 @@ return {
 
             vim.treesitter.language.register("htmldjango", "html")
         end,
-        dependencies = {
-            "vim-matchup",
-        },
     },
 }

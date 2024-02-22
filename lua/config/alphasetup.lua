@@ -213,7 +213,7 @@ local section = {
             {
                 type = "group",
                 val = function()
-                    return { mru(1, nil, 9) }
+                    return { mru(0, nil, 10) }
                 end
             },
         },
