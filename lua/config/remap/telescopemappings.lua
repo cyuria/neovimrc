@@ -106,3 +106,10 @@ vim.keymap.set(
     builtin.builtin,
     { desc = "Telescope pickers" }
 )
+-- Notifications
+vim.keymap.set(
+    'n',
+    '<leader>fn',
+    telescope.extensions.notify.notify,
+    { desc = "Telescope notify" }
+)

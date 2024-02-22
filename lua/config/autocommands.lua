@@ -50,6 +50,13 @@ local bufopts = {
     }
 }
 
+local formatonchange = {
+    arduino = true,
+    c = true,
+    cpp = true,
+    python = true,
+}
+
 
 function LoadOpts(opts, buf)
     for key, value in pairs(opts) do
@@ -114,7 +121,9 @@ local function load()
     vim.api.nvim_create_autocmd({ "TextChanged" }, {
         group = augroup,
         callback = function()
-            vim.lsp.buf.format()
+            if formatonchange[vim.bo.filetype] == true then
+                vim.lsp.buf.format()
+            end
         end
     })
     if require 'dependencies'.enable_discord then

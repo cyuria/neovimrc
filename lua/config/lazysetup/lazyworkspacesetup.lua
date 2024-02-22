@@ -13,28 +13,29 @@ local plugins = {
             "nvim-telescope/telescope-live-grep-args.nvim",
         },
         config = function()
-            require'telescope'.load_extension'live_grep_args'
+            require 'telescope'.load_extension 'live_grep_args'
         end,
     },
     -- telescope-fzf-native.nvim
     {
         "nvim-telescope/telescope-fzf-native.nvim",
-        build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
+        build =
+        'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
         dependencies = {
             "telescope.nvim"
         },
         config = function()
-            require'telescope'.load_extension'fzf'
+            require 'telescope'.load_extension 'fzf'
         end,
     },
     -- lir.nvim + extensions
     {
         "tamago324/lir.nvim",
         opts = function()
-            local actions = require'lir.actions'
-            local mark_actions = require'lir.mark.actions'
-            local clipboard_actions = require'lir.clipboard.actions'
-            local mmv_actions = require'lir.mmv.actions'
+            local actions = require 'lir.actions'
+            local mark_actions = require 'lir.mark.actions'
+            local clipboard_actions = require 'lir.clipboard.actions'
+            local mmv_actions = require 'lir.mmv.actions'
 
             return {
                 show_hidden_files = true,
@@ -61,7 +62,7 @@ local plugins = {
                     ['D'] = actions.delete,
 
                     ['J'] = function()
-                        mark_actions.toggle_mark'v'
+                        mark_actions.toggle_mark 'v'
                         vim.cmd 'normal! j'
                     end,
                     ['C'] = clipboard_actions.copy,
@@ -73,26 +74,26 @@ local plugins = {
             }
         end,
         config = function(_, opts)
-            require'lir'.setup(opts)
-            require'nvim-web-devicons'.set_icon{
+            require 'lir'.setup(opts)
+            require 'nvim-web-devicons'.set_icon {
                 lir_folder_icon = {
                     icon = "",
                     color = "#7ebae4",
                     name = "LirFolderNode"
                 },
             }
-            vim.api.nvim_create_autocmd({'FileType'}, {
+            vim.api.nvim_create_autocmd({ 'FileType' }, {
                 pattern = { "lir" },
                 callback = function()
                     vim.keymap.set(
                         'x', 'J',
                         function()
-                            require'lir.mark.actions'.toggle_mark'v'
+                            require 'lir.mark.actions'.toggle_mark 'v'
                         end,
                         { buffer = true, noremap = true, silent = true, }
                     )
                     vim.api.nvim_echo(
-                        {{ vim.fn.expand("%:p"), "Normal" }},
+                        { { vim.fn.expand("%:p"), "Normal" } },
                         false,
                         {}
                     )
@@ -113,7 +114,7 @@ local plugins = {
         "tamago324/lir-git-status.nvim",
         opts = { show_ignored = true, },
         config = function(_, opts)
-            require'lir.git_status'.setup(opts)
+            require 'lir.git_status'.setup(opts)
         end,
     },
     -- vim-fugitive
@@ -126,8 +127,8 @@ local plugins = {
             "telescope.nvim",
         },
         config = function(_, opts)
-            require'project_nvim'.setup(opts)
-            require'telescope'.load_extension'projects'
+            require 'project_nvim'.setup(opts)
+            require 'telescope'.load_extension 'projects'
         end,
     },
     -- trouble.nvim
@@ -138,10 +139,39 @@ local plugins = {
             "nvim-tree/nvim-web-devicons"
         },
     },
+    -- noice.nvim
+    {
+        "folke/noice.nvim",
+        event = "VeryLazy",
+        opts = {
+            lsp = {
+                -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
+                override = {
+                    ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                    ["vim.lsp.util.stylize_markdown"] = true,
+                    ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+                },
+            },
+        },
+        dependencies = {
+            "muniftanjim/nui.nvim",
+            "nvim-notify",
+        },
+    },
+    -- nvim-notify
+    {
+        "rcarriga/nvim-notify",
+        opts = {
+            background_colour = "#000000",
+        },
+        dependencies = {
+            "telescope.nvim"
+        },
+    },
 }
 
 -- octo.nvim
-if require'dependencies'.enable_github then
+if require 'dependencies'.enable_github then
     table.insert(plugins, {
         "pwntester/octo.nvim",
         opts = {},
@@ -153,7 +183,7 @@ if require'dependencies'.enable_github then
     })
 end
 -- nvimcord
-if require'dependencies'.enable_discord then
+if require 'dependencies'.enable_discord then
     table.insert(plugins, {
         "ObserverOfTime/nvimcord",
         branch = "workspace",
