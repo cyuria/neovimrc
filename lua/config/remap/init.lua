@@ -15,5 +15,4 @@ if require 'dependencies'.enable_plugins then
     require 'config.remap.beaconmappings'
     require 'config.remap.persistencemappings'
     require 'config.remap.troublemappings'
-    require 'config.remap.telescopemappings'
 end

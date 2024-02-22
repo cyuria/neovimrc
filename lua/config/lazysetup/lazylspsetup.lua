@@ -3,7 +3,6 @@ return {
     {
         "L3MON4D3/LuaSnip",
         version = "1.2.*",
-        lazy = true,
         build = "make install_jsregexp",
         config = function()
             -- Uncomment to use friendly snippets
@@ -20,8 +19,6 @@ return {
     {
         "williamboman/mason.nvim",
         build = ":MasonUpdate",
-        lazy = true,
-        event = "BufReadPre",
         cmd = "Mason",
         opts = {},
         config = function()
@@ -51,7 +48,7 @@ return {
     -- nvim-cmp
     {
         "hrsh7th/nvim-cmp",
-        lazy = true,
+        event = "InsertEnter",
         opts = function()
             local cmp = require 'cmp'
             return {
@@ -128,5 +125,4 @@ return {
             "vim-matchup",
         },
     },
-
 }

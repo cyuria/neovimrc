@@ -78,13 +78,6 @@ vim.keymap.set(
     function() builtin.diagnostics({ bufnr = 0 }) end,
     { desc = "Telescope document diagnostics" }
 )
--- Search projects
-vim.keymap.set(
-    'n',
-    '<leader>fp',
-    telescope.extensions.projects.projects,
-    { desc = "Telescope projects" }
-)
 -- Search the solar system
 vim.keymap.set(
     'n',

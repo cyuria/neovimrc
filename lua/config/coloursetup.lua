@@ -15,7 +15,7 @@ local doubleschemes = {
 vim.g.darkscheme = "slate"
 vim.g.lightscheme = "shine"
 if require 'dependencies'.enable_plugins then
-    vim.g.darkscheme = "elly"
+    vim.g.darkscheme = "nightfox"
     vim.g.lightscheme = "dayfox"
 
     vim.g.gruvbox_contrast_dark = 'soft'

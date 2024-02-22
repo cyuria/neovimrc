@@ -1,10 +1,19 @@
 return {
     -- COLOUR SCHEMES
-    "EdenEast/nightfox.nvim",
-    "jacoborus/tender.vim",
+    -- nightfox.nvim
+    {
+        "EdenEast/nightfox.nvim",
+        lazy = false,
+    },
+    -- tender.vim
+    {
+        "jacoborus/tender.vim",
+        lazy = false,
+    },
     -- kanagawa.nvim
     {
         "rebelot/kanagawa.nvim",
+        lazy = false,
         opts = {
             -- Remove gutter background
             colors = { theme = { all = { ui = {
@@ -36,10 +45,26 @@ return {
             end,
         },
     },
-    "ellisonleao/gruvbox.nvim",
-    "sjl/badwolf",
-    "romainl/apprentice",
-    "yorickpeterse/happy_hacking.vim",
+    -- gruvbox.nvim
+    {
+        "ellisonleao/gruvbox.nvim",
+        lazy = false,
+    },
+    -- badwolf
+    {
+        "sjl/badwolf",
+        lazy = false,
+    },
+    -- apprentice
+    {
+        "romainl/apprentice",
+        lazy = false,
+    },
+    -- happy_hacking.vim
+    {
+        "yorickpeterse/happy_hacking.vim",
+        lazy = false,
+    },
     -- tokyonight.nvim
     {
         "folke/tokyonight.nvim",
@@ -102,12 +127,44 @@ return {
             end,
         },
     },
-    "sainnhe/edge",
-    "lunacookies/vim-colors-xcode",
-    "kuuote/elly.vim",
-    "jorengarenar/vim-darkness",
-    "savq/melange-nvim",
-    "luisiacc/gruvbox-baby",
-    "blueshirts/darcula",
-    "joshdick/onedark.vim",
+    -- edge
+    {
+        "sainnhe/edge",
+        lazy = false,
+    },
+    -- vim-colors-xcode
+    {
+        "lunacookies/vim-colors-xcode",
+        lazy = false,
+    },
+    -- elly.vim
+    {
+        "kuuote/elly.vim",
+        lazy = false,
+    },
+    -- vim-darkness
+    {
+        "jorengarenar/vim-darkness",
+        lazy = false,
+    },
+    -- melange-nvim
+    {
+        "savq/melange-nvim",
+        lazy = false,
+    },
+    -- gruvbox-baby
+    {
+        "luisiacc/gruvbox-baby",
+        lazy = false,
+    },
+    -- darcula
+    {
+        "blueshirts/darcula",
+        lazy = false,
+    },
+    -- onedark
+    {
+        "joshdick/onedark.vim",
+        lazy = false,
+    },
 }

@@ -2,6 +2,7 @@ return {
     -- feline.nvim
     {
         "freddiehaddad/feline.nvim",
+        lazy = false,
         opts = function() return require'config.felinesetup' end,
         config = function(_, opts)
             local feline = require'feline'
@@ -13,7 +14,11 @@ return {
             "tokyonight.nvim",
         },
     },
-    "nanozuki/tabby.nvim",
+    -- tabby.nvim
+    {
+        "nanozuki/tabby.nvim",
+        lazy = false,
+    },
     -- pretty-fold.nvim
     {
         "anuvyklack/pretty-fold.nvim",

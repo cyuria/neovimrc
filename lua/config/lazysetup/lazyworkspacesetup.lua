@@ -7,13 +7,21 @@ local plugins = {
     {
         "nvim-telescope/telescope.nvim",
         branch = "0.1.x",
+        event = "VeryLazy",
         opts = {},
         dependencies = {
-            "nvim-lua/plenary.nvim",
+            "plenary.nvim",
             "nvim-telescope/telescope-live-grep-args.nvim",
+            "telescope-fzf-native.nvim",
+            "nvim-notify",
+            "todo-comments.nvim",
         },
         config = function()
             require 'telescope'.load_extension 'live_grep_args'
+            require 'telescope'.load_extension 'todo-comments'
+            require 'telescope'.load_extension 'notify'
+            require 'telescope'.load_extension 'fzf'
+            require 'config.remap.telescopemappings'
         end,
     },
     -- telescope-fzf-native.nvim
@@ -21,16 +29,12 @@ local plugins = {
         "nvim-telescope/telescope-fzf-native.nvim",
         build =
         'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
-        dependencies = {
-            "telescope.nvim"
-        },
-        config = function()
-            require 'telescope'.load_extension 'fzf'
-        end,
+        event = "VeryLazy",
     },
     -- lir.nvim + extensions
     {
         "tamago324/lir.nvim",
+        event = "VeryLazy",
         opts = function()
             local actions = require 'lir.actions'
             local mark_actions = require 'lir.mark.actions'
@@ -101,7 +105,7 @@ local plugins = {
             })
         end,
         dependencies = {
-            "nvim-lua/plenary.nvim",
+            "plenary.nvim",
             "nvim-tree/nvim-web-devicons",
             "lir-mmv.nvim",
             "lir-git-status.nvim",
@@ -109,9 +113,11 @@ local plugins = {
     },
     {
         "tamago324/lir-mmv.nvim",
+        event = "VeryLazy",
     },
     {
         "tamago324/lir-git-status.nvim",
+        event = "VeryLazy",
         opts = { show_ignored = true, },
         config = function(_, opts)
             require 'lir.git_status'.setup(opts)
@@ -119,18 +125,6 @@ local plugins = {
     },
     -- vim-fugitive
     "tpope/vim-fugitive",
-    -- project.nvim
-    {
-        "ahmedkhalf/project.nvim",
-        opts = { manual_mode = true },
-        dependencies = {
-            "telescope.nvim",
-        },
-        config = function(_, opts)
-            require 'project_nvim'.setup(opts)
-            require 'telescope'.load_extension 'projects'
-        end,
-    },
     -- trouble.nvim
     {
         "folke/trouble.nvim",
@@ -142,7 +136,7 @@ local plugins = {
     -- noice.nvim
     {
         "folke/noice.nvim",
-        event = "VeryLazy",
+        lazy = false,
         opts = {
             lsp = {
                 -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -161,11 +155,9 @@ local plugins = {
     -- nvim-notify
     {
         "rcarriga/nvim-notify",
+        event = "VeryLazy",
         opts = {
             background_colour = "#000000",
-        },
-        dependencies = {
-            "telescope.nvim"
         },
     },
 }
@@ -174,10 +166,10 @@ local plugins = {
 if require 'dependencies'.enable_github then
     table.insert(plugins, {
         "pwntester/octo.nvim",
+        event = "VeryLazy",
         opts = {},
         dependencies = {
-            "telescope.nvim",
-            "nvim-lua/plenary.nvim",
+            "plenary.nvim",
             "nvim-tree/nvim-web-devicons",
         }
     })
@@ -186,6 +178,7 @@ end
 if require 'dependencies'.enable_discord then
     table.insert(plugins, {
         "ObserverOfTime/nvimcord",
+        event = "VeryLazy",
         branch = "workspace",
         opts = {
             autostart = true,

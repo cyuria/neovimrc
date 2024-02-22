@@ -2,17 +2,18 @@ return {
     -- which-key.nvim
     {
         "folke/which-key.nvim",
+        event = "VeryLazy",
         opts = {},
     },
     -- persistence.nvim
     {
         "folke/persistence.nvim",
-        event = "BufReadPre",
         opts = {},
     },
     -- auto-save
     {
         "Pocco81/auto-save.nvim",
+        event = "VeryLazy",
         opts = {
             callbacks = {
                 after_saving = require 'config.functions'.reloadCtags
@@ -22,7 +23,6 @@ return {
     -- nvim-surround
     {
         "kylechui/nvim-surround",
-        version = "*",
         event = "VeryLazy",
         opts = {
             keymaps = {
@@ -44,7 +44,7 @@ return {
     -- nvim-autopairs
     {
         "windwp/nvim-autopairs",
-        event = "InsertEnter",
+        event = "VeryLazy",
         opts = {
             check_ts = true, -- use treesitter
         },
@@ -63,9 +63,10 @@ return {
             "nvim-cmp",
         },
     },
-    -- mvim-ts-autotag
+    -- nvim-ts-autotag
     {
         "windwp/nvim-ts-autotag",
+        event = "VeryLazy",
         config = true,
         dependencies = {
             "nvim-treesitter",
@@ -97,14 +98,10 @@ return {
     -- todo-comments.nvim
     {
         "folke/todo-comments.nvim",
+        event = "VeryLazy",
         opts = {},
-        config = function(_, opts)
-            require 'todo-comments'.setup(opts)
-            require 'telescope'.load_extension 'todo-comments'
-        end,
         dependencies = {
-            "nvim-lua/plenary.nvim",
-            "telescope.nvim",
+            "plenary.nvim",
         },
     },
     -- undo tree

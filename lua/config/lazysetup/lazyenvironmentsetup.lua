@@ -18,11 +18,10 @@ return {
     -- alpha-nvim
     {
         "goolord/alpha-nvim",
+        lazy = false,
         opts = require'config.alphasetup'.config,
         dependencies = {
-            "project.nvim",
             "nvim-tree/nvim-web-devicons",
         },
     },
-
 }

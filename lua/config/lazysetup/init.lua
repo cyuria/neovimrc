@@ -18,6 +18,7 @@ local plugins = {
     "seandewar/nvimesweeper",
     "alec-gibson/nvim-tetris",
     "alanfortlink/blackjack.nvim",
+    "nvim-lua/plenary.nvim",
     { import = 'config.lazysetup.lazylspsetup' },
     { import = 'config.lazysetup.lazystylesetup' },
     { import = 'config.lazysetup.lazycoloursetup' },
@@ -27,16 +28,22 @@ local plugins = {
 }
 
 local lazyopts = {
+    defaults = {
+        lazy = true,
+    },
     dev = {
         path = "~/code",
         patterns = { "Cyuria", },
         fallback = true,
     },
     install = {
+        missing = false,
         colorscheme = {
-            "tokyonight",
+            "elly",
             "kanagawa-dragon",
             "nightfox",
+            "edge",
+            "tokyonight",
             "habamax",
         },
     },

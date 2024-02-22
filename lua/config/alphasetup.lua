@@ -128,7 +128,6 @@ end
 
 
 local default_mru_ignore = { "gitcommit" }
-local default_mrf_ignore = { "c:" }
 
 local mru_opts = {
     ignore = function(path, ext)
@@ -188,33 +187,6 @@ local function intable(table, value)
 end
 
 
-local foldernr
-
---- @param start number
-local function mrf(start, maxProjects, ignore)
-    ignore = ignore or default_mrf_ignore
-    local tbl = {}
-    local indexbias = 1
-    local projects = require'project_nvim'.get_recent_projects()
-    local reversedprojects = {}
-    for i = #projects, math.max(1, 1 + #projects - maxProjects), -1 do
-        reversedprojects[#reversedprojects+1] = projects[i]
-    end
-    for i, pn in ipairs(reversedprojects) do
-        if not intable(ignore, pn) then
-           tbl[i] = folder_button(pn, tostring(i + start - indexbias))
-        else
-            indexbias = indexbias + 1
-        end
-    end
-    foldernr = math.min(#projects, maxProjects) - indexbias
-    return {
-        type = "group",
-        val = tbl,
-        opts = {}
-    }
-end
-
 local section = {
     header = default_header,
     top_buttons = {
@@ -224,24 +196,6 @@ local section = {
             button("e", "New file", "<cmd>ene<cr>"),
             button("h", "Open home dir", "<cmd>e ~/<cr>"),
         },
-    },
-    mrf = {
-        type = "group",
-        val = {
-            { type = "padding", val = 1 },
-            { type = "text", val = "Recent Projects", opts = { hl = "SpecialComment" } },
-            { type = "padding", val = 1 },
-            {
-                type = "group",
-                val = function()
-                    return { mrf(0, 6) }
-                end
-            }
-        },
-        opts = {
-            position = "center",
-            shrink_margin = false
-        }
     },
     -- note about MRU: currently this is a function,
     -- since that means we can get a fresh mru
@@ -259,7 +213,7 @@ local section = {
             {
                 type = "group",
                 val = function()
-                    return { mru(foldernr + 1, nil, 9 - foldernr) }
+                    return { mru(1, nil, 9) }
                 end
             },
         },
@@ -299,7 +253,6 @@ local config = {
         section.header,
         { type = "padding", val = 2 },
         section.top_buttons,
-        section.mrf,
         section.mru,
         { type = "padding", val = 1 },
         section.session_buttons,
