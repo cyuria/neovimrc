@@ -156,10 +156,8 @@ return {
                 {
                     view = "popup",
                     filter = {
-                        any = {
-                            { min_height = 10, },
-                            { cmdline = true, },
-                        }
+                        min_height = 10,
+                        cmdline = true,
                     },
                 },
                 {
