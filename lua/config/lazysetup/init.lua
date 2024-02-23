@@ -15,9 +15,21 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-    "seandewar/nvimesweeper",
-    "alec-gibson/nvim-tetris",
-    "alanfortlink/blackjack.nvim",
+    -- nvimesweeper
+    {
+        "seandewar/nvimesweeper",
+        cmd = "Nvimesweeper",
+    },
+    -- nvim-tetris
+    {
+        "alec-gibson/nvim-tetris",
+        cmd = "Tetris",
+    },
+    -- blackjack.nvim
+    {
+        "alanfortlink/blackjack.nvim",
+        cmd = "Blackjack",
+    },
     "nvim-lua/plenary.nvim",
     { import = 'config.lazysetup.lazylspsetup' },
     { import = 'config.lazysetup.lazystylesetup' },

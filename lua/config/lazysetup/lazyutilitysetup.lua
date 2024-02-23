@@ -8,6 +8,7 @@ return {
     -- persistence.nvim
     {
         "folke/persistence.nvim",
+        lazy = false,
         opts = {},
     },
     -- auto-save
@@ -72,13 +73,20 @@ return {
             "nvim-treesitter",
         },
     },
-    -- nvim-lastplace
-    "ethanholz/nvim-lastplace",
+    -- vim-lastplace
+    {
+        "farmergreg/vim-lastplace",
+        lazy = false,
+    },
     -- beacon.nvim
-    "danilamihailov/beacon.nvim",
+    {
+        "danilamihailov/beacon.nvim",
+        cmd = "Beacon",
+    },
     -- nvim-colorizer.lua
     {
         "norcalli/nvim-colorizer.lua",
+        event = "VeryLazy",
         opts = {
             filetypes = {},
             defaults = {},
@@ -90,6 +98,7 @@ return {
     -- gitsigns.nvim
     {
         "lewis6991/gitsigns.nvim",
+        event = "VeryLazy",
         opts = {
             current_line_blame = true,
             current_line_blame_formatter = '<author>, <summary> - <author_time:%d/%m/%Y>',
@@ -104,8 +113,20 @@ return {
             "plenary.nvim",
         },
     },
-    -- undo tree
-    "mbbill/undotree",
-    -- vim matchup
-    "andymass/vim-matchup",
+    -- undotree
+    {
+        "mbbill/undotree",
+        cmd = {
+            "UndotreeToggle",
+            "UndotreeHide",
+            "UndotreeShow",
+            "UndotreeFocus",
+            "UndotreePersistUndo",
+        },
+    },
+    -- vim-matchup
+    {
+        "andymass/vim-matchup",
+        event = "VeryLazy",
+    },
 }

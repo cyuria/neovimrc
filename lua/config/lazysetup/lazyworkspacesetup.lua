@@ -1,8 +1,4 @@
-function ConcatPath(path1, path2)
-    return vim.fn.resolve(path1 .. '/' .. path2)
-end
-
-local plugins = {
+return {
     -- telescope.nvim
     {
         "nvim-telescope/telescope.nvim",
@@ -12,14 +8,16 @@ local plugins = {
         dependencies = {
             "plenary.nvim",
             "nvim-telescope/telescope-live-grep-args.nvim",
-            "telescope-fzf-native.nvim",
-            "nvim-notify",
             "todo-comments.nvim",
+            "nvim-notify",
+            "noice.nvim",
+            "telescope-fzf-native.nvim",
         },
         config = function()
             require 'telescope'.load_extension 'live_grep_args'
             require 'telescope'.load_extension 'todo-comments'
             require 'telescope'.load_extension 'notify'
+            require 'telescope'.load_extension 'noice'
             require 'telescope'.load_extension 'fzf'
             require 'config.remap.telescopemappings'
         end,
@@ -124,11 +122,20 @@ local plugins = {
         end,
     },
     -- vim-fugitive
-    "tpope/vim-fugitive",
+    {
+        "tpope/vim-fugitive",
+        lazy = false,
+    },
     -- trouble.nvim
     {
         "folke/trouble.nvim",
         opts = {},
+        cmd = {
+            "Trouble",
+            "TroubleClose",
+            "TroubleToggle",
+            "TroubleRefresh",
+        },
         dependencies = {
             "nvim-tree/nvim-web-devicons"
         },
@@ -139,11 +146,27 @@ local plugins = {
         lazy = false,
         opts = {
             lsp = {
-                -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
                 override = {
                     ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
                     ["vim.lsp.util.stylize_markdown"] = true,
-                    ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+                    ["cmp.entry.get_documentation"] = true,
+                },
+            },
+            routes = {
+                {
+                    view = "popup",
+                    filter = {
+                        any = {
+                            { min_height = 10, },
+                            { cmdline = true, },
+                        }
+                    },
+                },
+                {
+                    view = "split",
+                    filter = {
+                        min_height = 20,
+                    },
                 },
             },
         },
@@ -160,32 +183,27 @@ local plugins = {
             background_colour = "#000000",
         },
     },
-}
-
--- octo.nvim
-if require 'dependencies'.enable_github then
-    table.insert(plugins, {
+    -- octo.nvim
+    {
         "pwntester/octo.nvim",
         event = "VeryLazy",
+        cond = require 'dependencies'.enable_github,
         opts = {},
         dependencies = {
             "plenary.nvim",
             "nvim-tree/nvim-web-devicons",
         }
-    })
-end
--- nvimcord
-if require 'dependencies'.enable_discord then
-    table.insert(plugins, {
+    },
+    -- nvimcord
+    {
         "ObserverOfTime/nvimcord",
         event = "VeryLazy",
+        cond = require 'dependencies'.enable_discord,
         branch = "workspace",
         opts = {
             autostart = true,
             large_file_icon = true,
             dynamic_workspace = true,
         }
-    })
-end
-
-return plugins
+    },
+}
