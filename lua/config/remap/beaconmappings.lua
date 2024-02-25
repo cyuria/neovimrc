@@ -1,8 +1,6 @@
 
 -- nvim beacon settings
-vim.keymap.set('n', 'n', 'n:Beacon<CR>', { noremap=true })
-vim.keymap.set('n', 'N', 'N:Beacon<CR>', { noremap=true })
-vim.keymap.set('n', '*', '*:Beacon<CR>', { noremap=true })
-vim.keymap.set('n', '#', '#:Beacon<CR>', { noremap=true })
-vim.keymap.set('n', '<leader>b', vim.fn.Beacon, {})
-
+vim.keymap.set('n', '<leader>b', function() vim.cmd 'Beacon' end, {})
+for _, k in ipairs({ 'n', 'N', '*', '#' }) do
+    vim.keymap.set('n', k, k .. ':Beacon<cr>', { noremap = true })
+end
