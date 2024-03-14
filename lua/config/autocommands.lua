@@ -39,17 +39,6 @@ local ftypeopts = {
     },
 }
 
-local bufopts = {
-    {
-        pattern = { "*.gltf", },
-        options = { filetype = "json", }
-    },
-    {
-        pattern = { ".tags" },
-        options = { filetype = "tags" },
-    }
-}
-
 local formatonchange = {
     arduino = true,
     c = true,
@@ -57,31 +46,21 @@ local formatonchange = {
     python = true,
 }
 
+local filetypes = {
+    gltf = "json",
+    frag = "glsl",
+    vert = "glsl",
+}
 
-function LoadOpts(opts, buf)
+local function LoadOpts(opts, buf)
     for key, value in pairs(opts) do
         vim.bo[buf][key] = value
     end
 end
 
-function LoadFiletypeOpts(opts)
+local function LoadFiletypeOpts(opts)
     local bufferopts = ftypeopts[vim.bo[opts.buf].filetype] or ftypeopts.defaults
     LoadOpts(bufferopts, opts.buf)
-end
-
-function LoadBufferOptAutocmd(augroup)
-    for _, bufoptions in ipairs(bufopts) do
-        vim.api.nvim_create_autocmd(
-            { "BufNewFile", "BufRead" },
-            {
-                group = augroup,
-                pattern = bufoptions.pattern,
-                callback = function(options)
-                    LoadOpts(bufoptions.options, options.buf)
-                end,
-            }
-        )
-    end
 end
 
 local function load()
@@ -151,7 +130,9 @@ local function load()
             end,
         })
     end
-    LoadBufferOptAutocmd(augroup)
+    vim.filetype.add({
+        extension = filetypes,
+    })
 end
 
 return {
