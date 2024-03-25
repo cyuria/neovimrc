@@ -40,7 +40,6 @@ local ftypeopts = {
 }
 
 local formatonchange = {
-    arduino = true,
     c = true,
     cpp = true,
     python = true,
