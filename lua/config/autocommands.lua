@@ -21,6 +21,10 @@ local ftypeopts = {
         tabstop = 4,
         shiftwidth = 4,
     },
+    yaml = {
+        tabstop = 4,
+        shiftwidth = 4,
+    },
     java = {
         tabstop = 4,
         shiftwidth = 4,
@@ -49,6 +53,7 @@ local filetypes = {
     gltf = "json",
     frag = "glsl",
     vert = "glsl",
+    ino = "cpp",
 }
 
 local function LoadOpts(opts, buf)
