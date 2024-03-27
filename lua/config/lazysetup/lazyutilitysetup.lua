@@ -129,4 +129,14 @@ return {
         "andymass/vim-matchup",
         event = "VeryLazy",
     },
+    -- vim-unimpaired
+    {
+        "tpope/vim-unimpaired",
+        event = "VeryLazy",
+    },
+    -- AnsiEsc.vim
+    {
+        "vim-scripts/AnsiEsc.vim",
+        event = "VeryLazy",
+    },
 }

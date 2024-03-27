@@ -178,6 +178,8 @@ return {
         "rcarriga/nvim-notify",
         event = "VeryLazy",
         opts = {
+            top_down = false,
+            fps = 20,
             background_colour = "#000000",
         },
     },
